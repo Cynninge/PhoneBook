@@ -1,0 +1,50 @@
+﻿@model PhoneBook.Repository.Tables.Person
+@{
+    ViewData["Title"] = "Edit";
+}<h1>Edycja</h1>
+@if (!string.IsNullOrEmpty(ViewData["Error"].ToString()))
+{
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Błąd! </strong>
+        @ViewData["Error"]
+    </div>
+}@if (!string.IsNullOrEmpty(ViewData["Success"].ToString()))
+{
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Sukces! </strong>
+        @ViewData["Success"]
+    </div>
+}<form method="post" data-ajax="true">
+    <div class="form-group">
+        <label>Id</label>
+        <input type="text" asp-for="Id" disabled="disabled" />
+        <span asp-validation-for="Id" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Imię</label>
+        <input type="text" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Nazwisko</label>
+        <input type="text" asp-for="LastName" />
+        <span asp-validation-for="LastName" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Numer telefonu</label>
+        <input type="text" asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Email</label>
+        <input type="email" asp-for="Email" />
+        <span asp-validation-for="Email" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Data utworzenia</label>
+        <input type="email" asp-for="CreateStamp" disabled="disabled" />
+        <span asp-validation-for="CreateStamp" style="color:red"></span>
+    </div>    <div class="form-group">
+        <label>Data modyfikacji</label>
+        <input type="email" asp-for="ModifStamp" disabled="disabled" />
+        <span asp-validation-for="ModifStamp" style="color:red"></span>
+    </div>    <hr />
+    <button class="btn btn-info" type="submit">Zapisz</button>
+</form>

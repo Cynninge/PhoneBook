@@ -1,0 +1,202 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@model IndexModel
+@if (!string.IsNullOrEmpty(ViewData["Success"].ToString()))
+{
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Sukces! </strong>
+        @ViewData["Success"]
+    </div>
+}<h2>Lista tiketów</h2>
+<a class="btn btn-info" asp-action="Add">Dodaj</a>
+<a class="btn btn-info" asp-action="Search">Szukaj</a>
+<br />
+<form method="post" data-ajax="true">
+    <div class="form-group">
+        <label>Nazwisko</label>
+        <input type="text" @*asp-for=""*@ />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lp</th>
+            <th>Wybierz</th>
+            <th>Usuń</th>
+            <th>Edytuj</th>
+            <th>Data</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Email</th>
+            <th>Data utworzenia</th>
+            <th>Data modyfikacji</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Lp</th>
+            <th>Wybierz</th>
+            <th>Usuń</th>
+            <th>Edytuj</th>
+            <th>Data</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Email</th>
+            <th>Data utworzenia</th>
+            <th>Data modyfikacji</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @{
+            int lp = 0;
+        }        @foreach (var row in Model.People)
+        {
+            lp++;
+            var color = "white";
+            @if (Model.SelectId.HasValue && Model.SelectId.Value == row.Id)
+            {
+                color = "whitesmoke";
+            }
+            <tr style="background-color: @color">
+                <td>@lp</td>
+                <td>
+                    <a href="~/Home/Index/@row.Id">Wybierz</a>
+                </td>
+                <td>
+                    <a href="~/Home/Remove/@row.Id">Usuń</a>
+                </td>
+                <td>
+                    <a href="~/Home/Edit/@row.Id">Edytuj</a>
+                </td>
+                <td>
+                    @row.FirstName
+                </td>
+                <td>
+                    @row.LastName
+                </td>
+                <td>
+                    @row.PhoneNumber
+                </td>
+                <td>
+                    @row.Email
+                </td>
+                <td>
+                    @row.CreateStamp
+                </td>
+                <td>
+                    @row.ModifStamp
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@{
+            ViewData["Title"] = "Home Page";
+        }
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+    @model IndexModel
+    @{
+        ViewData["Title"] = "Show";
+    }
+
+    @if (!string.IsNullOrEmpty(ViewData["Success"].ToString()))
+    {
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Sukces! </strong>
+            @ViewData["Success"]
+        </div>
+    }
+
+    <h2>Lista numerów</h2>
+    <a class="btn btn-info" asp-action="Add">Dodaj</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Lp</th>
+                <th>Wybierz</th>
+                <th>Usuń</th>
+                <th>Edytuj</th>
+                <th>Data</th>
+                <th>Typ</th>
+                <th>Opis</th>
+                <th>Wiek</th>
+                <th>Hasło</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Lp</th>
+                <th>Wybierz</th>
+                <th>Usuń</th>
+                <th>Edytuj</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Data utworzenia</th>
+                <th>Data modyfikacji</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @{
+                int lp = 0;
+            }
+
+            @foreach (var row in Model.people)
+            {
+                lp++;
+                var color = "white";
+                @if (Model.SelectId.HasValue && Model.SelectId.Value == row.Id)
+                {
+                    color = "whitesmoke";
+                }
+
+                <tr style="background-color: @color">
+                    <td>@lp</td>
+                    <td>
+                        <a href="~/Ticket/Index/@row.Id">Wybierz</a>
+                    </td>
+                    <td>
+                        <a href="~/Ticket/Remove/@row.Id">Usuń</a>
+                    </td>
+                    <td>
+                        <a href="~/Ticket/Edit/@row.Id">Edytuj</a>
+                    </td>
+                    <td>
+                        @row.FirstName
+                    </td>
+                    <td>
+                        @row.LastName
+                    </td>
+                    <td>
+                        @row.PhoneNumber
+                    </td>
+                    <td>
+                        @row.Email
+                    </td>
+                    <td>
+                        @row.CreateStamp
+                    </td>
+                    <td>
+                        @row.ModifStamp
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

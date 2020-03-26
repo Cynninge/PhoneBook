@@ -1,0 +1,33 @@
+﻿@model PhoneBook.Repository.Tables.Person
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+@*@if (!string.IsNullOrEmpty(ViewData["Error"].ToString()))
+{
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Błąd! </strong>
+        @ViewData["Error"]
+    </div>
+}
+@if (!string.IsNullOrEmpty(ViewData["Success"].ToString()))
+{
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Sukces! </strong>
+        @ViewData["Success"]
+    </div>
+}*@
+<form method="post" data-ajax="true">
+    
+    <div class="form-group">
+        <label>Nazwisko</label>
+        <input type="text" asp-for="LastName" />
+        <span asp-validation-for="LastName" style="color:red"></span>
+    </div>    
+    
+    <button class="btn btn-info" type="submit">Szukaj</button>
+</form>
